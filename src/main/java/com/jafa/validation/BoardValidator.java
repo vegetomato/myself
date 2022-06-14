@@ -28,7 +28,7 @@ public class BoardValidator implements Validator{//두번째꺼
 	@Override
 	public void validate(Object target, Errors errors) {
 		Board board = (Board) target;
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "required");
 		if(board.getTitle()==null||board.getTitle().trim().isEmpty()) {
 			errors.rejectValue("title", "required");
 			return;

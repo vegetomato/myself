@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.error {font-size : 22px; color:red}
+</style>
 </head>
 <body>
 <form:form action="register" modelAttribute="board">
@@ -19,6 +22,3 @@
 </form:form>
 </body>
 </html>
-<style>
-.error {font-size : 22px; color:red}
-</style>
