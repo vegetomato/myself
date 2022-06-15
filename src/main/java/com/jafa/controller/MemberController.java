@@ -27,7 +27,7 @@ public class MemberController {
 
 	@PostMapping("/register")
 	public String register(@Valid Member member, Errors errors) {
-		new MemberValidator().validate(member, errors);
+//		new MemberValidator().validate(member, errors);
 		if(errors.hasErrors()) {
 			return "member/register";
 		}

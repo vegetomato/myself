@@ -22,7 +22,7 @@
 		<form:errors path="password"/>
 	</div>
 		<div>
-		비밀번호 확인 : <form:input path="confirmPassword" type="password"/>
+		비밀번호 확인 : <form:input path="confirmPassword" type="text"/>
 		<form:errors path="confirmPassword"/>
 	</div>
 	<button>회원가입</button>
