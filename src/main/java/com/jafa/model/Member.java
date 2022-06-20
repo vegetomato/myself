@@ -19,6 +19,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @FieldMatch(first = "confirmPassword", second = "password", message = "비밀번호가 일치 하지 않음")
 public class Member {
+
+	private Long id;
+	
 //	@Size(min=2,max=5, message = "이름은 한글 또는 영어 2~5글자여야 합니다.")
 	@Pattern(regexp = "^[가-힣|a-z|A-Z]{2,5}$", message = "이름은 한글 또는 영어 2~5글자여야 합니다.")
 	private String userName;

@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-.error {font-size : 22px; color:red}
-</style>
-</head>
-<body>
+<%@ include file="../layout/header.jsp"%>
+<div class="container">
 <form:form action="register" modelAttribute="board">
 	제목 : <form:input type="text" path="title" />
 	<form:errors path="title" class="error" element="div"/><br>
@@ -20,5 +11,5 @@
 	<form:errors path="writer"/><br>
 	<button>등록</button>
 </form:form>
-</body>
-</html>
+</div>
+<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
