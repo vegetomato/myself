@@ -66,7 +66,7 @@ public class BoardController {
 		if(errors.hasErrors()) {
 			return "board/register";
 		}
-		return "redirect:list";
-		
+		service.register(board);
+		return "redirect:list";	
 	}
 }

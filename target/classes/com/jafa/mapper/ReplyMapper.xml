@@ -29,8 +29,7 @@
 	<update id="update">
 		update reply_tbl
 		set reply = #{reply},
-		updateDate=
-		now()
+		updateDate= now()
 		where rno = #{rno}
 	</update>
 </mapper>

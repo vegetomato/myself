@@ -21,7 +21,6 @@
 	</form>
 <table class="table">
 	<h3>자유 게시판</h3>
-	<a href="register" class="btn btn-primary">글쓰기</a>
 	<tr>
 		<th>번호</th>
 		<th>제목</th>
@@ -33,7 +32,7 @@
 	<tr>
 		<td>${b.bno }</td>
 		<td>
-		<a href="${b.bno}" class="get">${b.title }</a>
+		<a href="${b.bno}" class="get">${b.title }<b>[${b.replyCnt }]</b></a>
 		</td>
 		<td>${b.writer }</td>
 		<td>
@@ -47,15 +46,16 @@
 	</tr>
 	</c:forEach>
 </table>
+<a href="register" class="btn btn-primary">글쓰기</a>
 <div class="pagination">
 <c:if test="${pageMaker.prev }">
-	<a href="${pageMaker.startPage-1 }">[이전페이지]</a>
+	<li class="page-item"><a href="${pageMaker.startPage-1 }" class="page-link">이전페이지</a></li>
 </c:if>
 <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-<a href="${pageNum}" class="${pageMaker.criteria.page == pageNum ? 'on' : '' }">[${pageNum}]</a>
+<li class="page-item"><a href="${pageNum}" class="page-link ${pageMaker.criteria.page == pageNum ? 'on' : '' }">${pageNum}</a></li>
 </c:forEach>
 <c:if test="${pageMaker.next }">
-	<a href="${pageMaker.endPage+1 }">[다음페이지]</a>
+<li class="page-item"><a class="page-link" href="${pageMaker.endPage+1 }">다음페이지</a></li>
 </c:if>
 </div>
 </div>

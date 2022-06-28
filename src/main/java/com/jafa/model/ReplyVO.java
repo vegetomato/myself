@@ -18,8 +18,6 @@ public class ReplyVO {
 	private Long bno;
 	private String reply;
 	private String replyer;
-	@Getter
 	private LocalDateTime regDate;
-	@Getter
 	private LocalDateTime updateDate;
 }

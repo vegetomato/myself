@@ -70,13 +70,21 @@ let replyService = (function(){
 		});
 	} //update end
 	
+	function get(rno, callback, error){
+		$.get(contextPath+"/replies/"+rno,function(result){
+			if(callback)callback(result)
+		}).fail(function(xhr,status,err){
+			if(error) error(err)
+		})
+	}	
 	
 	//getList : getList 이렇게 해야 메서드 등록
 	return {
 		add : add, 
 		getList : getList,
 		remove : remove,
-		update : update
+		update : update,
+		get : get
 	}
 })();
 
