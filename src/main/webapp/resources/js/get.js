@@ -71,6 +71,37 @@ $(function() {
 			})
 		})
 		
+		$.getJSON(contextPath+"/board/getAttachList",{bno : bnoValue},function(attachList){
+			
+			let str ="";
+			$(attachList).each(function(i,obj){
+		   if(!obj.fileType){ //이미지가 아닌경우
+		   		let fileCellPath = encodeURIComponent(obj.uploadPath + "/"+ obj.uuid + "_" + obj.fileName);
+		   		//전송하기 위해 li태그로 묶었다?? 
+		   		str+= "<li class = 'list-group-item' data-path='"+obj.uploadPath+"'";
+		   		str+= "data-uuid='"+obj.uuid+"'data-filename='"+obj.fileName+"' data-type="+obj.fileType+">"
+		   		str+= "<img src='"+contextPath+"/resources/img/attach.png' style = 'width:50px '>"
+		   		str+= "<a href='"+contextPath+"/download?fileName="+fileCellPath+"'>"+obj.fileName+"</a>"
+		   		str+= "<div class = 'd-flex justify-content-end'><span data-file='"+fileCellPath+"' data-type='file'></span>"
+		   		str+= "</li>"
+			   
+		   }else { //이미지인 경우
+			   let fileCellPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
+		   	   let originPath = obj.uploadPath + "\\" + obj.uuid + "_" + obj.fileName;
+		   	   originPath = originPath.replace(new RegExp(/\\/g),"/");
+		   	   		
+	   			str+= "<li class = 'list-group-item' data-path='"+obj.uploadPath+"'";
+   				str+= "data-uuid='"+obj.uuid+"'data-filename='"+obj.fileName+"' data-type="+obj.fileType+">";
+	   	   		str += "<img src='"+contextPath+"/display?fileName="+fileCellPath+"'>";
+	   			str += "<a href ='"+contextPath+"/download?fileName="+originPath+"'>"+obj.fileName+"</a>";
+	   	   		str += "</ii>";
+		   }
+		   
+	   }) // each end
+	   $('.uploadResult ul').append(str);
+	})
+	
+		
 		//댓글 등록 모달창
 		$('#addReplyBtn').on('click', function(){
 			modal.find('input').val('');

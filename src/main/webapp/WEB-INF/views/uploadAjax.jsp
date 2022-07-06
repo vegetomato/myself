@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +15,19 @@
 	<input type="file" name="uploadFile" multiple="multiple">
 </div>
 <button id="uploadBtn">업로드</button>
+
+<div class="uploadResult">
+	<ul>
+		
+	</ul>
+</div>
+
+<div class="oImg"></div>
 </body>
 <script>
 $(function(){
 	   let contextPath = '${pageContext.request.contextPath}';
-	   let regex = new RegExp("(.*?)\.(exe|sh|js|alz|txt)$")
+	   let regex = new RegExp("(.*?)\.(exe|sh|js|alz)$")
 	   let maxSize = 5242880;
 	   
 	   function checkExtension(fileName, fileSize){
@@ -32,7 +42,7 @@ $(function(){
 	      return true;
 	   }
 	   
-	   
+	   let cloneObj = $('.uploadDiv').clone();
 	   $('#uploadBtn').on('click', function(){
 	      let formData = new FormData();
 	      
@@ -52,11 +62,69 @@ $(function(){
 	         data : formData,
 	         type : 'post',
 	         success : function(result){
-	            alert("Uploaded" + result);
+	            alert("Uploaded");
+				$('.uploadDiv').html(cloneObj.html());
+				showUploadFile(result);
 	         }
 	      })
 	   })
-	})
+	   let uploadResult = $('.uploadResult ul');
+	   function showUploadFile(uploadResultArr){
+		   let str = "";
+		   $(uploadResultArr).each(function(i,obj){
+			   
+			   if(!obj.image){ //이미지가 아닌경우
+			   		let fileCellPath = encodeURIComponent(obj.uploadPath + "/"+ obj.uuid + "_" + obj.fileName);
+			   		let fileLink = fileCellPath.replace(new RegExp(/\\/g),"/");
+			   		
+			   		str+= "<li><img src='${contextPath}/resources/img/attach.png' style = 'width:100px '></img>"
+			   		str+= "<a href='${contextPath}/download?fileName="+fileCellPath+"'>"+obj.fileName+"</a>"
+			   		str+= "<span data-file='"+fileLink+"' data-type='file'>삭제</span>"
+			   		str+= "</li>"
+				   
+			   }else { //이미지인 경우
+				   let fileCellPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
+			   	   let originPath = obj.uploadPath + "\\" + obj.uuid + "_" + obj.fileName;
+			   	   originPath = originPath.replace(new RegExp(/\\/g),"/");
+			   	   		str += "<li><img src='${contextPath}/display?fileName="+fileCellPath+"'>";
+			   			str +="<a href ='javascript:showImage(\""+originPath+"\")'>이미지 원본 보기</a>";
+			   			str +="<br><span data-file='"+fileCellPath+"' data-type='image'>삭제</span>"
+			   	   		str += "</ii>";
+			   }
+			   
+		   })
+		   uploadResult.append(str);
+	   }
+	   uploadResult.on('click','span',function(){
+		   let targetFile = ($(this).data('file'));
+		   let type = $(this).data('type');
+		   
+		   $.ajax({
+			   url : contextPath + '/deleteFile',
+			   type : 'post',
+			   data : {
+				   fileName : targetFile,
+				   type : type
+			   },
+			   dataType : "text",
+			   success : function(result){
+				   alert(result)
+			   }
+			   
+		   })
+	   })
+	})// document.ready end;
+	
+		   
+	   function showImage(path){
+		   let imgTag = "<img src='${contextPath}/display?fileName="+encodeURI(path)+"'>";
+		   $('.oImg').html(imgTag);
+	   }
+	   
+	   
 
 </script>
+<style>
+.oImg img {width:100%}
+</style>
 </html>

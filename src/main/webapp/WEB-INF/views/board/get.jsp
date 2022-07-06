@@ -31,6 +31,20 @@
 		<button class="btn btn-danger remove">삭제</button>
 		<button class="btn btn-primary list">목록</button>
 	</form>
+	
+	<div class="row my-5">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<h4>파일 첨부</h4>
+				</div>
+				<div class="panel-body">
+					<div class="uploadResult">
+						<ul class="list-group"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
 <!-- 댓글 등록 -->
 	<button type="button" id="addReplyBtn" class="btn btn-primary" data-toggle="modal"
 		data-target="#replyForm">댓글 달기</button>

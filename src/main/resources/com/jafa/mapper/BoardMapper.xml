@@ -40,11 +40,12 @@
 	</select>
 
 	<insert id="insert">
-		insert into board_tbl(title,content,writer)
+		insert into board_tbl(bno,title,content,writer)
 		values
-		(#{title},#{content},#{writer});
-		<selectKey keyProperty="bno" order="AFTER" resultType="Long">
-			select last_insert_id();
+		(#{bno},#{title},#{content},#{writer});
+		<selectKey keyProperty="bno" order="BEFORE" resultType="Long">
+			<!-- select last_insert_id(); -->
+			select max(bno)+1 from board_tbl
 		</selectKey>
 	</insert>
 

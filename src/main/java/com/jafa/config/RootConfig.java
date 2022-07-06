@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
@@ -21,7 +22,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @MapperScan("com.jafa.mapper")
 
 @EnableAspectJAutoProxy
-
+@EnableScheduling
 @EnableTransactionManagement
 public class RootConfig {
 	
