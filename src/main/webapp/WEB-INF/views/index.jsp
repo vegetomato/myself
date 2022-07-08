@@ -2,16 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
-<!-- 
 <div class="container">
-<div>
-	<a href="?lang=ko">한국어</a>
-	<a href="?lang=en">영어</a>
+	<h3>Home</h3>
+	<p><a href="${contextPath}/security/all">모든 방문자 허용</a></p>
+	<p><a href="${contextPath}/security/member">회원등급 이상</a></p>
+	<p><a href="${contextPath}/security/admin">관리자만</a></p>
 </div>
-<spring:message code="board.bno" /><br>
-<spring:message code="board.title" /><br>
-<spring:message code="board.content" /><br>
-<spring:message code="board.writer" />
-</div>
- -->
+
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

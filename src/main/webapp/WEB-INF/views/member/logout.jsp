@@ -1,0 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp"%>
+<div class="container">
+	<h2>로그아웃 페이지</h2>
+	<!-- contextPath는 security에서 설정한 url이다 -->
+	<form action="${contextPath }/customLogout" method="post">
+		<button class="btn btn-primary">로그아웃</button>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token }">
+	</form>
+</div>
+<%@ include file="../layout/footer.jsp"%>
