@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+<sec:authentication property="principal.memberVO" var="memberVO"/>
+<sec:authentication property="principal.username" var="writer"/>
 <div class="container">
 	<form:form action="register" id="registerForm" modelAttribute="board">
-	<div class="hiddenArea"></div>
+	<div class="hiddenArea">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token }">
+	</div>
 	제목 : <form:input type="text" path="title" />
 		<form:errors path="title" class="error" element="div" />
 		<br>
 	내용 :<br>
 		<form:textarea rows="30" cols="50" path="content" />
 		<br>
-	작성자 : <form:input type="text" path="writer" />
+	작성자 : <form:input type="text" path="writer" value="${writer}" readonly="readonly"/>
 		<form:errors path="writer" />
 		<br>
 		<button>등록</button>

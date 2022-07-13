@@ -37,14 +37,12 @@ public class BoardValidator implements Validator{//두번째꺼
 			errors.rejectValue("title", "length");
 			return;
 		}
-		if(board.getWriter()==null || board.getWriter().trim().isEmpty()) {
-			errors.rejectValue("writer", "required.writer");
-		}else {
-			Matcher matcher = pattern.matcher(board.getWriter());
-			if(!matcher.matches()) {
-				errors.rejectValue("writer", "hangul");
-			}
-		}
+		/*
+		 * if(board.getWriter()==null || board.getWriter().trim().isEmpty()) {
+		 * errors.rejectValue("writer", "required.writer"); }else { Matcher matcher =
+		 * pattern.matcher(board.getWriter()); if(!matcher.matches()) {
+		 * errors.rejectValue("writer", "hangul"); } }
+		 */
 	} 
 
 }

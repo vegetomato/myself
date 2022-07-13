@@ -20,8 +20,10 @@ public class Board {
 	private String content;
 	private String writer;
 	private int replyCnt;
+	private Long viewCount;
 	private LocalDateTime regDate;
 	private LocalDateTime updateDate;
 	
 	private List<BoardAttachVO> attachList;
+	
 }

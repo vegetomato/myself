@@ -5,9 +5,11 @@
 <br>
 <div class="container">
 	<form action="modify" method="post" id="modifyForm">
-		<input type="hidden" name="bno" value="${board.bno }"> 게시물 번호
+		<input type="hidden" name="bno" value="${board.bno}"> 게시물 번호
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		<input type="hidden" name="writer" value="${board.writer}">
 		: ${board.bno } <br> 제목 : <input type="text" name="title"
-			value="${board.title }"><br> 내용 :
+			value="${board.title}"><br> 내용 :
 		<textarea rows="" cols="" name="content">${board.content}</textarea>
 		<br> 작성자 : ${board.writer }<br>
 		<button class="btn btn-warning">수정하기</button>

@@ -21,14 +21,17 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import lombok.val;
+
 @Configuration
 @MapperScan("com.jafa.mapper")
 @EnableAspectJAutoProxy
 @EnableScheduling
 @EnableTransactionManagement
-@ImportResource(value = {
-		"classpath:config/security-context.xml"
-})
+/*
+ * @ImportResource(value = { "classpath:config/security-context.xml" })
+ */
+//@Import(value = {SecurityConfig.class})
 public class RootConfig {
 	
 	@Bean
